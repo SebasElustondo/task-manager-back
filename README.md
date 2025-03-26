@@ -107,6 +107,20 @@ curl --location 'http://localhost:3000/tasks/'
 ]
 ```
 
+2. Get Task By ID
+```
+curl --location 'http://localhost:3000/tasks/5'
+```
+* Response example:
+```
+{
+    "id": 5,
+    "title": "1qqq123123",
+    "description": "2aa",
+    "completed": true
+}
+```
+
 3. Update a Task
 ```
 curl --location --request PUT 'http://localhost:3000/tasks/{{id}}' \

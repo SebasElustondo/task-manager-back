@@ -28,6 +28,20 @@ class TaskController {
         }
     };
 
+    public findTaskById = async (req: Request, res: Response): Promise<void> => {
+        try {
+            const taskId = req.params.id;
+            const updatedTask = await this.taskService.findTaskById(taskId);
+            res.status(200).json(updatedTask);
+        } catch (error) {
+            if (error instanceof NotFoundError) {
+                res.status(404).json({ message: error.message });
+            } else {
+                res.status(500).json({ message: 'Internal server error', error });
+            }
+        }
+    }
+
     public editTask = async (req: Request, res: Response): Promise<void> => {
         try {
             const taskId = req.params.id;

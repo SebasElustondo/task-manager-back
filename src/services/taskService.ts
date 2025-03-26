@@ -11,11 +11,19 @@ export class TaskService {
 
     public async addTask(taskInput: TaskInput) {
         validateTaskData(taskInput);
-        return await this.taskModel.createTask(taskInput.title, taskInput.description!);
+        return await this.taskModel.createTask(taskInput.title, taskInput.description!, taskInput.completed!);
     }
 
     public async getTasks() {
         return await this.taskModel.findAllTasks();
+    }
+
+    public async findTaskById(id: string) {
+        const taskId = Number(id);
+        if (isNaN(taskId)) {
+            throw new Error('Invalid task ID');
+        }
+        return await this.taskModel.findTaskById(taskId);
     }
 
     public async editTask(id: string, taskInput: TaskInput) {

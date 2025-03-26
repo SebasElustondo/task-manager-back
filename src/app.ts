@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import { connectToDatabase } from './database/connection';
 import { setRoutes } from './routes/taskRoutes';
 import dotenv from 'dotenv';
@@ -9,6 +10,7 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(cors()); 
 
 connectToDatabase().then(() => {
     setRoutes(app);
